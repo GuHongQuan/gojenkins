@@ -112,6 +112,7 @@ type BuildResponse struct {
 	} `json:"artifacts"`
 	Building  bool   `json:"building"`
 	BuiltOn   string `json:"builtOn"`
+	Class     string `json:"_class"`
 	ChangeSet struct {
 		Items []struct {
 			AffectedPaths []string `json:"affectedPaths"`
