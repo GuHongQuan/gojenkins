@@ -57,6 +57,7 @@ type PipelineNode struct {
 	Duration       int64 `json:"durationMillis"`
 	StageFlowNodes []PipelineNode
 	ParentNodes    []int64
+	Error          map[string]string
 }
 
 type PipelineInputAction struct {
