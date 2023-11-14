@@ -99,28 +99,28 @@ func (run *PipelineRun) update() {
 	}
 }
 
-func (job *Job) GetPipelineRuns(ctx context.Context) (pr []PipelineRun, err error) {
-	_, err = job.Jenkins.Requester.GetJSON(ctx, job.Base+"/wfapi/runs", &pr, nil)
+func (j *Job) GetPipelineRuns(ctx context.Context) (pr []PipelineRun, err error) {
+	_, err = j.Jenkins.Requester.GetJSON(ctx, j.Base+"/wfapi/runs", &pr, nil)
 	if err != nil {
 		return nil, err
 	}
 	for i := range pr {
 		pr[i].update()
-		pr[i].Job = job
+		pr[i].Job = j
 	}
 
 	return pr, nil
 }
 
-func (job *Job) GetPipelineRun(ctx context.Context, id string) (pr *PipelineRun, err error) {
+func (j *Job) GetPipelineRun(ctx context.Context, id string) (pr *PipelineRun, err error) {
 	pr = new(PipelineRun)
-	href := job.Base + "/" + id + "/wfapi/describe"
-	_, err = job.Jenkins.Requester.GetJSON(ctx, href, pr, nil)
+	href := j.Base + "/" + id + "/wfapi/describe"
+	_, err = j.Jenkins.Requester.GetJSON(ctx, href, pr, nil)
 	if err != nil {
 		return nil, err
 	}
 	pr.update()
-	pr.Job = job
+	pr.Job = j
 
 	return pr, nil
 }
