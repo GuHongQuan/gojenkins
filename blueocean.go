@@ -47,7 +47,7 @@ func (j *Job) GetBlueOceanRunStages(ctx context.Context, number int) ([]*BlueOce
 
 	href = fmt.Sprintf(href, strings.Join(strings.Split(j.Base, "/job/"), "/"), number)
 	result := make([]*BlueOceanStage, 0)
-	_, err := j.Jenkins.Requester.GetJSON(ctx, href, &result, nil)
+	_, err := j.Jenkins.Requester.Get(ctx, href, &result, nil)
 	if err != nil {
 		return nil, err
 	}
