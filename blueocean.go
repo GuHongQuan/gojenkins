@@ -7,13 +7,15 @@ import (
 )
 
 type BlueOceanStage struct {
-	DisplayName string      `json:"displayName"`
-	Id          string      `json:"id"`
-	Input       interface{} `json:"input"`
-	Result      string      `json:"result"`
-	State       string      `json:"state"`
-	Type        string      `json:"type"`
-	FirstParent interface{} `json:"firstParent"`
+	DisplayName      string      `json:"displayName"`
+	Id               string      `json:"id"`
+	Input            interface{} `json:"input"`
+	Result           string      `json:"result"`
+	DurationInMillis int         `json:"durationInMillis"`
+	StartTime        string      `json:"startTime"`
+	State            string      `json:"state"`
+	Type             string      `json:"type"`
+	FirstParent      interface{} `json:"firstParent"`
 }
 
 func (j *Job) GetBlueOceanRunStages(ctx context.Context, number int) ([]*BlueOceanStage, error) {
